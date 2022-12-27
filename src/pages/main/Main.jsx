@@ -1,10 +1,11 @@
+import { Table } from "../../components/table";
 import { AddNewTeam } from "../../features";
 
 export const Main = () => {
   return (
     <>
       <AddNewTeam />
-      {/* table */}
+      <Table/>
       {/* matches */}
     </>
   );

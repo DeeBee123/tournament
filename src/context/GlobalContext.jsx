@@ -4,7 +4,7 @@ import { useLocalStorage } from "../utils/useLocalStorage";
 const GlobalContext = createContext();
 
 const GlobalContextProvider = ({ children }) => {
-  const [teams, setTeams] = useLocalStorage("teams", null);
+  const [teams, setTeams] = useLocalStorage("teams", []);
   const [matches, setMatches] = useLocalStorage("matches", null);
 
   return (

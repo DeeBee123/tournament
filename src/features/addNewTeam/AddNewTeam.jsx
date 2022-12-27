@@ -1,17 +1,21 @@
 import { useState, useContext } from "react";
 import { Button, Input } from "../../components";
 import { GlobalContext } from "../../context/GlobalContext";
+import { v1 as uuidv1 } from 'uuid';
+
 
 export const AddNewTeam = () => {
   const [inputValue, setIntputValue] = useState("");
 
   const { setTeams } = useContext(GlobalContext);
-  const handleAdd = (e) => {
-    setTeams((prevTeams) => [...prevTeams, inputValue]);
+  const handleAdd = () => {
+    setTeams((prevTeams) => [...prevTeams, {id: uuidv1(), name: inputValue}]);
+    setIntputValue("")
   };
-  const inputChange = (e) => {
+  const inputChange = (e) => { 
     setIntputValue(e.target.value);
   };
+
 
   return (
     <>
