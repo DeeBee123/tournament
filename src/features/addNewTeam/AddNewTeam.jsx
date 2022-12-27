@@ -20,6 +20,7 @@ export const AddNewTeam = () => {
         title="Add team"
         handleChange={inputChange}
         value={inputValue}
+        placeholder="New team"
       />
       <Button type="submit" text="Add" handleClick={handleAdd} />
     </>
