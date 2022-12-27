@@ -1,10 +1,11 @@
-
+import Main from "./pages/main/Main";
+import { GlobalContextProvider } from "./context/GlobalContext";
 
 function App() {
   return (
-    <div className="App">
- 
-    </div>
+    <GlobalContextProvider>
+      <Main />
+    </GlobalContextProvider>
   );
 }
 
