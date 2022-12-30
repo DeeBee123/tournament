@@ -5,7 +5,7 @@ const GlobalContext = createContext();
 
 const GlobalContextProvider = ({ children }) => {
   const [teams, setTeams] = useLocalStorage("teams", []);
-  const [matches, setMatches] = useLocalStorage("matches", null);
+  const [matches, setMatches] = useLocalStorage("matches", []);
 
   return (
     <GlobalContext.Provider value={{ teams, matches, setTeams, setMatches }}>
