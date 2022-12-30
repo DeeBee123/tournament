@@ -1,0 +1,21 @@
+.matches {
+  width: 30%;
+  &__row {
+    margin: 5px 0;
+    display: flex;
+    justify-content: center;
+  }
+  .team {
+    // width: 50%;
+    // padding: 6px 25px;
+    text-transform: capitalize;
+    // display: block;
+  }
+  .team:first-child {
+    text-align: right;
+  }
+
+  .score {
+    margin: 0 5px;
+  }
+}

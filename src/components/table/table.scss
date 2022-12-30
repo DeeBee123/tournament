@@ -1,0 +1,22 @@
+@import "../../styles/";
+
+
+table {
+    width: 60%;
+    border-spacing: unset;
+    border: 2px solid $black-400;
+    text-align: center;
+    border-collapse: collapse;
+    thead{
+       
+        background-color: $grey-100
+    }
+    th{
+        padding: 7px 0;
+        border: 1px solid black;
+    }
+    td{
+
+        border: 1px solid black;
+    }
+}
