@@ -1,21 +1,33 @@
 import { useState, useContext } from "react";
 import { Button, Input } from "../../components";
 import { GlobalContext } from "../../context/GlobalContext";
-import { v1 as uuidv1 } from 'uuid';
-
+import { v1 as uuidv1 } from "uuid";
 
 export const AddNewTeam = () => {
   const [inputValue, setIntputValue] = useState("");
 
-  const { setTeams } = useContext(GlobalContext);
+  const { setTeams, setMatches, teams, matches } = useContext(GlobalContext);
+
+  const newMatches = teams.map((team) => ({
+    id: uuidv1(),
+    team1: team.name,
+    team2: inputValue,
+    score1: null,
+    score2: null,
+  }));
+
   const handleAdd = () => {
-    setTeams((prevTeams) => [...prevTeams, {id: uuidv1(), name: inputValue}]);
-    setIntputValue("")
+    if(!inputValue){
+      return
+    }
+    setMatches((prevMatches) => [...prevMatches, ...newMatches]);
+    console.log(matches);
+    setTeams((prevTeams) => [...prevTeams, { id: uuidv1(), name: inputValue }]);
+    setIntputValue("");
   };
-  const inputChange = (e) => { 
+  const inputChange = (e) => {
     setIntputValue(e.target.value);
   };
-
 
   return (
     <>
@@ -25,6 +37,7 @@ export const AddNewTeam = () => {
         handleChange={inputChange}
         value={inputValue}
         placeholder="New team"
+        className="input"
       />
       <Button type="submit" text="Add" handleClick={handleAdd} />
     </>
