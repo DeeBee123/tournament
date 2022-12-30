@@ -11,7 +11,7 @@ const TableRow = ({ team, place, matches }) => {
     <tr>
       <td>{place}</td>
       <td>{team.name}</td>
-      <td>{matchesPlayed(matches)}</td>
+      <td>{matchesPlayed(matches, team)}</td>
       <td>{matchesWon(matches, team)}</td>
       <td>{matchesDraw(matches, team)}</td>
       <td>{matchesLost(matches, team)}</td>
