@@ -4,4 +4,10 @@
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    @media screen and (max-width: $layout-breakpoint-medium) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
+

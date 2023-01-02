@@ -1,22 +1,25 @@
 @import "../../styles/";
+section.table {
+  width: 55%;
 
-
-table {
-    width: 60%;
+  table {
+    width: 100%;
     border-spacing: unset;
     border: 2px solid $black-400;
     text-align: center;
     border-collapse: collapse;
-    thead{
-       
-        background-color: $grey-100
+    thead {
+      background-color: $grey-100;
     }
-    th{
-        padding: 7px 0;
-        border: 1px solid black;
+    th {
+      padding: 7px 0;
+      border: 1px solid black;
     }
-    td{
-
-        border: 1px solid black;
+    td {
+      border: 1px solid black;
     }
+  }
+  @media screen and (max-width: $layout-breakpoint-medium) {
+    width: 90%;
+  }
 }
