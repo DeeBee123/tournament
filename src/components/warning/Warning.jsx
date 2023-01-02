@@ -1,7 +1,7 @@
 import "./warning.scss";
 
-const Warning = ({ errorMsg }) => {
-  return <small className="error"> {errorMsg}</small>;
+const Warning = ({ errorMsg, className }) => {
+  return <small className={"error " + className}> {errorMsg}</small>;
 };
 
 export default Warning;

@@ -12,7 +12,6 @@ export const Input = ({
   handleKey,
   handleBlur,
   testId,
-  pattern,
 }) => {
   return (
     <>
@@ -27,11 +26,10 @@ export const Input = ({
         value={value}
         placeholder={placeholder}
         onKeyDown={handleKey}
-        onBlur={(key, e) => handleBlur(key, e)}
+        onBlur={handleBlur}
         data-testid={testId}
         autoComplete="off"
         aria-label="input"
-        pattern={pattern}
       ></input>
     </>
   );

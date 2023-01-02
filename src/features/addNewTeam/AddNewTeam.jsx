@@ -3,10 +3,12 @@ import { Button, Input } from "../../components";
 import { GlobalContext } from "../../context/GlobalContext";
 import { v1 as uuidv1 } from "uuid";
 import { capitalLetter } from "../../utils/useCapitalLetter";
+import { validInput, teamIsUnique } from "../../utils/validation";
+import Warning from "../../components/warning/Warning";
 
 export const AddNewTeam = () => {
   const [inputValue, setIntputValue] = useState("");
-
+  const [errorMsg, setErrorMsg] = useState(null);
   const { setTeams, setMatches, teams } = useContext(GlobalContext);
 
   const newMatches = teams.map((team) => ({
@@ -18,24 +20,34 @@ export const AddNewTeam = () => {
   }));
 
   const handleAdd = () => {
-    if (!inputValue) {
+    if (!validInput(inputValue)) {
+      setErrorMsg("Invalid input");
       return;
     }
+    if (!teamIsUnique(inputValue, teams)) {
+      setErrorMsg("This name is already taken.");
+      return;
+    }
+    setErrorMsg(null);
     setMatches((prevMatches) => [...prevMatches, ...newMatches]);
-    setTeams((prevTeams) => [...prevTeams, { id: uuidv1(), name: capitalLetter(inputValue) }]);
+    setTeams((prevTeams) => [
+      ...prevTeams,
+      { id: uuidv1(), name: capitalLetter(inputValue) },
+    ]);
     setIntputValue("");
   };
   const inputChange = (e) => {
     setIntputValue(e.target.value);
   };
   const handleReset = () => {
-    localStorage.clear()
+    localStorage.clear();
     setTeams([]);
-    setMatches([])
+    setMatches([]);
   };
 
   return (
     <>
+      {errorMsg && <Warning errorMsg={errorMsg} className="newTeam" />}
       <Input
         id="newTeam"
         title="Add team"
@@ -45,7 +57,7 @@ export const AddNewTeam = () => {
         className="input"
         testId="inputTeam"
         handleBlur={inputChange}
-        handleKey={(e)=> e.key==='Enter' && handleAdd()}
+        handleKey={(e) => e.key === "Enter" && handleAdd()}
       />
       <Button
         type="submit"
@@ -53,7 +65,7 @@ export const AddNewTeam = () => {
         handleClick={handleAdd}
         testId="addTeam"
       />
-       <Button
+      <Button
         type="submit"
         text="Reset data"
         handleClick={handleReset}
