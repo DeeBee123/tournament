@@ -12,6 +12,7 @@ export const Matches = ({ inputChange, inputValue }) => {
   const indexOfLastRecord = currentPage * matchesPerPage;
   const indexOfFirstRecord = indexOfLastRecord - matchesPerPage;
   const currentMatches = matches.slice(indexOfFirstRecord, indexOfLastRecord);
+
   const pagenumbers = Math.ceil(matches.length / matchesPerPage);
   const handleUpdate = (vals) => {
     let index = matches.findIndex((match) => match.id === vals.id);
@@ -30,11 +31,13 @@ export const Matches = ({ inputChange, inputValue }) => {
           handleUpdate={handleUpdate}
         />
       ))}
-      <Pagination
-        nPages={pagenumbers}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {currentMatches?.length > 0 && (
+        <Pagination
+          nPages={pagenumbers}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </section>
   );
 };
