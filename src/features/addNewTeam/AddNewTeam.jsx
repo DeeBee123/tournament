@@ -12,7 +12,7 @@ export const AddNewTeam = () => {
   const newMatches = teams.map((team) => ({
     id: uuidv1(),
     team1: team.name,
-    team2: inputValue,
+    team2: capitalLetter(inputValue),
     score1: null,
     score2: null,
   }));
@@ -28,6 +28,11 @@ export const AddNewTeam = () => {
   const inputChange = (e) => {
     setIntputValue(e.target.value);
   };
+  const handleReset = () => {
+    localStorage.clear()
+    setTeams([]);
+    setMatches([])
+  };
 
   return (
     <>
@@ -40,12 +45,19 @@ export const AddNewTeam = () => {
         className="input"
         testId="inputTeam"
         handleBlur={inputChange}
+        handleKey={(e)=> e.key==='Enter' && handleAdd()}
       />
       <Button
         type="submit"
         text="Add"
         handleClick={handleAdd}
         testId="addTeam"
+      />
+       <Button
+        type="submit"
+        text="Reset data"
+        handleClick={handleReset}
+        testId="removeData"
       />
     </>
   );
