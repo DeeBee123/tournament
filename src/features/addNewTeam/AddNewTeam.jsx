@@ -14,7 +14,7 @@ export const AddNewTeam = () => {
   const newMatches = teams.map((team) => ({
     id: uuidv1(),
     team1: team.name,
-    team2: capitalLetter(inputValue),
+    team2: capitalLetter(inputValue.trim()),
     score1: null,
     score2: null,
   }));
@@ -32,7 +32,7 @@ export const AddNewTeam = () => {
     setMatches((prevMatches) => [...prevMatches, ...newMatches]);
     setTeams((prevTeams) => [
       ...prevTeams,
-      { id: uuidv1(), name: capitalLetter(inputValue) },
+      { id: uuidv1(), name: capitalLetter(inputValue.trim()) },
     ]);
     setIntputValue("");
   };
