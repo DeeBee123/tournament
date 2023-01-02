@@ -13,9 +13,7 @@ const Match = ({ match, handleUpdate }) => {
     const copyState = { ...inputsValue };
     copyState[key] = +e.target.value;
     setIntputsValue(copyState);
-
   };
-
 
   const handleBlur = () => {
     if (
@@ -41,10 +39,9 @@ const Match = ({ match, handleUpdate }) => {
           handleBlur={handleBlur}
           handleChange={(e) => inputChange("score1", e)}
           value={inputsValue.score1 ?? ""}
-      
         />
       ) : (
-       <span className="score">{match.score1}</span> 
+        <span className="score">{match.score1}</span>
       )}
       :
       {match.score2 === null ? (
@@ -55,12 +52,11 @@ const Match = ({ match, handleUpdate }) => {
           handleBlur={handleBlur}
           handleChange={(e) => inputChange("score2", e)}
           value={inputsValue.score2 ?? ""}
-
         />
       ) : (
         <span className="score">{match.score2}</span>
       )}
-     <span className="team">{match.team2}</span> 
+      <span className="team">{match.team2}</span>
     </div>
   );
 };

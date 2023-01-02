@@ -1,0 +1,13 @@
+ul {
+  display: flex;
+  justify-content: center;
+  li {
+    list-style-type: none;
+  }
+  .prev {
+    margin-right: 4px;
+  }
+  .next {
+    margin-left: 4px;
+  }
+}
