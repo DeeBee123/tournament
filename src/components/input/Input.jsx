@@ -11,7 +11,8 @@ export const Input = ({
   className,
   handleKey,
   info,
-  handleBlur
+  handleBlur,
+  testId
 }) => {
 
 
@@ -30,6 +31,9 @@ export const Input = ({
         placeholder={placeholder}
         onKeyDown={handleKey}
         onBlur={(key, e)=> handleBlur(key, e)}
+        data-testid={testId}
+        autoComplete="off"
+        aria-label="input"
       ></input>
     </>
   );
