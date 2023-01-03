@@ -4,13 +4,13 @@ import "./main.scss"
 
 export const Main = () => {
   return (
-    <>
+    <main>
       <AddNewTeam />
-      <div className="main">
+      <div className="container">
         <Table />
         <Matches />
       </div>
-    </>
+    </main>
   );
 };
 

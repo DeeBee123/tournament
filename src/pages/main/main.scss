@@ -1,13 +1,18 @@
 @import "../../styles";
-.main {
+
+main {
+  width: 90%;
+  max-width: 1500px;
+  margin: auto;
+  .container {
     font-family: $font-family;
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
     @media screen and (max-width: $layout-breakpoint-medium) {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
+  }
 }
-

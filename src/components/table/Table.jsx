@@ -4,6 +4,7 @@ import { sortByPoints, findMatches } from "../../utils/calcPoints";
 import TableRow from "./TableRow";
 import Pagination from "../pagination/Pagination";
 import "./table.scss";
+import Thead from "./Thead";
 
 export const Table = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,6 +18,7 @@ export const Table = () => {
     indexOfLastRecord
   );
   const pagenumbers = Math.ceil(teams.length / teamsPerPage);
+
   if (!teams.length) {
     return <p> Please create first team for this tournament.</p>;
   }
@@ -24,17 +26,7 @@ export const Table = () => {
   return (
     <section className="table">
       <table>
-        <thead>
-          <tr>
-            <th>Place</th>
-            <th>Team</th>
-            <th>Played</th>
-            <th>Win</th>
-            <th>Draw</th>
-            <th>Lost</th>
-            <th>Points</th>
-          </tr>
-        </thead>
+        <Thead />
         <tbody>
           {currentTeams.map((team, index) => (
             <TableRow
