@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tournament/static/css/main.b2546484.css",
+    "main.js": "/tournament/static/js/main.e5033e5a.js",
+    "index.html": "/tournament/index.html",
+    "main.b2546484.css.map": "/tournament/static/css/main.b2546484.css.map",
+    "main.e5033e5a.js.map": "/tournament/static/js/main.e5033e5a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b2546484.css",
+    "static/js/main.e5033e5a.js"
+  ]
+}
