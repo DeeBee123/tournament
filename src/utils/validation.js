@@ -25,6 +25,5 @@ export const notAllowedSymbols = (inputValue) => {
 };
 
 export const checkLength = (inputValue) => {
-  // const cleanValue = inputValue.replace(/\s{2,}/g, " ").trim();
   return inputValue.split(" ").length < 4 ? true : false;
 };
