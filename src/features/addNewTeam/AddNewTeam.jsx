@@ -49,6 +49,13 @@ export const AddNewTeam = () => {
       });
       return;
     }
+    if (!checkLength(cleanValue(inputValue))) {
+      setAlertMsg({
+        msg: "Maximum three words can be used.",
+        type: "alert--danger",
+      });
+      return;
+    }
     setAlertMsg({
       msg: "Your team has been successfully added.",
       type: "alert--success",
