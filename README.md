@@ -24,6 +24,8 @@ All teams and scores have to be added manually. Meanwhile, matches are generated
 
 `npm test`
 
+For testing please make sure you use Node v18.9.0. To change your current node version use [nvm](https://github.com/nvm-sh/nvm).
+
 ## Live version
 
-Deployed at: [Github pages](linktoBeUploaded)
+Deployed at: [Github pages](https://deebee123.github.io/tournament/)

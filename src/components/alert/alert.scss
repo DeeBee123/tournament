@@ -5,11 +5,7 @@
   font-size: 12px;
   width: 100%;
   text-align: center;
-  transition: 0.5s;
   cursor: pointer;
-  visibility:hidden;
-  height: 0;
-  border: none;
   @include animation(6s, hideAnimation, 1);
 
   &--danger {
@@ -35,5 +31,6 @@
   &.newTeam {
     text-align: left;
     width: 55%;
+    height: auto;
   }
 }

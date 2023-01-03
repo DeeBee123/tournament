@@ -1,7 +1,11 @@
 import "./alert.scss";
 
-const Alert = ({ msg, className }) => {
-  return <small className={"alert " + className}> {msg}</small>;
+const Alert = ({ msg, className, handleAlert }) => {
+  return (
+    <small className={"alert " + className} onClick={handleAlert}>
+      {msg}
+    </small>
+  );
 };
 
 export default Alert;

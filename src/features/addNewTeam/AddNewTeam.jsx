@@ -2,8 +2,13 @@ import { useState, useContext } from "react";
 import { Button, Input } from "../../components";
 import { GlobalContext } from "../../context/GlobalContext";
 import { v1 as uuidv1 } from "uuid";
-import { capitalLetter } from "../../utils/useCapitalLetter";
-import { validInput, teamIsUnique } from "../../utils/validation";
+import { capitalLetter, cleanValue } from "../../utils/stringFunc";
+import {
+  validInput,
+  teamIsUnique,
+  notAllowedSymbols,
+  checkLength,
+} from "../../utils/validation";
 import Alert from "../../components/alert/Alert";
 
 export const AddNewTeam = () => {
@@ -14,7 +19,7 @@ export const AddNewTeam = () => {
   const newMatches = teams.map((team) => ({
     id: uuidv1(),
     team1: team.name,
-    team2: capitalLetter(inputValue.trim()),
+    team2: inputValue && capitalLetter(cleanValue(inputValue)),
     score1: null,
     score2: null,
   }));
@@ -22,13 +27,12 @@ export const AddNewTeam = () => {
   const clearAlert = () => {
     setTimeout(function () {
       setAlertMsg(null);
-    }, 2000);
+    }, 1000);
   };
 
   const handleAdd = () => {
     if (!validInput(inputValue)) {
       setAlertMsg({ msg: "Invalid input", type: "alert--danger" });
-      clearAlert();
       return;
     }
     if (!teamIsUnique(inputValue, teams)) {
@@ -36,22 +40,39 @@ export const AddNewTeam = () => {
         msg: "This name is already taken.",
         type: "alert--danger",
       });
-      clearAlert();
+      return;
+    }
+    if (notAllowedSymbols(inputValue)) {
+      setAlertMsg({
+        msg: "Only numbers and letters are allowed.",
+        type: "alert--danger",
+      });
       return;
     }
     setAlertMsg({
       msg: "Your team has been successfully added.",
       type: "alert--success",
     });
-    clearAlert();
     setMatches((prevMatches) => [...prevMatches, ...newMatches]);
     setTeams((prevTeams) => [
       ...prevTeams,
-      { id: uuidv1(), name: capitalLetter(inputValue.trim()) },
+      { id: uuidv1(), name: capitalLetter(cleanValue(inputValue)) },
     ]);
     setIntputValue("");
   };
   const inputChange = (e) => {
+    if (notAllowedSymbols(e.target.value)) {
+      setAlertMsg({
+        msg: "Only numbers and letters are allowed.",
+        type: "alert--danger",
+      });
+    }
+    if (!checkLength(cleanValue(e.target.value))) {
+      setAlertMsg({
+        msg: "Maximum three words can be used.",
+        type: "alert--danger",
+      });
+    }
     setIntputValue(e.target.value);
   };
   const handleReset = () => {
@@ -63,7 +84,11 @@ export const AddNewTeam = () => {
   return (
     <>
       {alertMsg && (
-        <Alert msg={alertMsg.msg} className={alertMsg.type + " newTeam"} />
+        <Alert
+          msg={alertMsg.msg}
+          className={alertMsg.type + " newTeam"}
+          handleAlert={clearAlert}
+        />
       )}
       <Input
         id="newTeam"

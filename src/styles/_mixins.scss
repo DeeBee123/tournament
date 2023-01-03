@@ -3,17 +3,10 @@
     0% {
       visibility: hidden;
       opacity: 0;
-      height: 0;
     }
-    10% {
+    20% {
       visibility: visible;
       opacity: 1;
-      height: auto;
-    }
-    90% {
-      visibility: hidden;
-      opacity: 0;
-      height: 0;
     }
   }
 

@@ -27,8 +27,8 @@ const Match = ({ match, handleUpdate }) => {
       setIntputsValue(copyState);
       setAlertMsg(null);
     } else {
-      setAlertMsg("Invalid input. It has to be a positive integer. " );
-      clearAlert()
+      setAlertMsg("Invalid input. It has to be a positive integer. ");
+      clearAlert();
     }
   };
 
@@ -46,10 +46,19 @@ const Match = ({ match, handleUpdate }) => {
       });
     }
   };
-
+  const handleAlert = () => {
+    console.log('gfd')
+    setAlertMsg(null);
+  };
   return (
     <>
-      {alertMsg && <Alert msg={alertMsg} className="alert--danger"/>}
+      {alertMsg && (
+        <Alert
+          msg={alertMsg}
+          className="alert--danger"
+          handleAlert={handleAlert}
+        />
+      )}
       <div className="matches__row">
         <span className="team">{match.team1}</span>
         {match.score1 === null ? (

@@ -18,3 +18,13 @@ export const teamIsUnique = (inputValue, teams) => {
     return true;
   }
 };
+
+export const notAllowedSymbols = (inputValue) => {
+  const allowed = new RegExp("[^a-zA-ZąčęėįšųūĄČĘĖĮŠŲŪ()\\d\\s]");
+  return allowed.test(inputValue);
+};
+
+export const checkLength = (inputValue) => {
+  // const cleanValue = inputValue.replace(/\s{2,}/g, " ").trim();
+  return inputValue.split(" ").length < 4 ? true : false;
+};
