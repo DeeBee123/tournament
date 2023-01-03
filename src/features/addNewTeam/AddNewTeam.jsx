@@ -4,12 +4,12 @@ import { GlobalContext } from "../../context/GlobalContext";
 import { v1 as uuidv1 } from "uuid";
 import { capitalLetter } from "../../utils/useCapitalLetter";
 import { validInput, teamIsUnique } from "../../utils/validation";
-import Warning from "../../components/warning/Warning";
+import Alert from "../../components/alert/Alert";
 
 export const AddNewTeam = () => {
   const [inputValue, setIntputValue] = useState("");
-  const [errorMsg, setErrorMsg] = useState(null);
   const { setTeams, setMatches, teams } = useContext(GlobalContext);
+  const [alertMsg, setAlertMsg] = useState(null);
 
   const newMatches = teams.map((team) => ({
     id: uuidv1(),
@@ -19,16 +19,31 @@ export const AddNewTeam = () => {
     score2: null,
   }));
 
+  const clearAlert = () => {
+    setTimeout(function () {
+      setAlertMsg(null);
+    }, 2000);
+  };
+
   const handleAdd = () => {
     if (!validInput(inputValue)) {
-      setErrorMsg("Invalid input");
+      setAlertMsg({ msg: "Invalid input", type: "alert--danger" });
+      clearAlert();
       return;
     }
     if (!teamIsUnique(inputValue, teams)) {
-      setErrorMsg("This name is already taken.");
+      setAlertMsg({
+        msg: "This name is already taken.",
+        type: "alert--danger",
+      });
+      clearAlert();
       return;
     }
-    setErrorMsg(null);
+    setAlertMsg({
+      msg: "Your team has been successfully added.",
+      type: "alert--success",
+    });
+    clearAlert();
     setMatches((prevMatches) => [...prevMatches, ...newMatches]);
     setTeams((prevTeams) => [
       ...prevTeams,
@@ -47,7 +62,9 @@ export const AddNewTeam = () => {
 
   return (
     <>
-      {errorMsg && <Warning errorMsg={errorMsg} className="newTeam" />}
+      {alertMsg && (
+        <Alert msg={alertMsg.msg} className={alertMsg.type + " newTeam"} />
+      )}
       <Input
         id="newTeam"
         title="Add team"

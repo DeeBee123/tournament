@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input } from "../input";
 import { inputPositiveNumber } from "../../utils/validation";
-import Warning from "../warning/Warning";
+import Alert from "../alert/Alert";
 
 const Match = ({ match, handleUpdate }) => {
   const [inputsValue, setIntputsValue] = useState({
@@ -9,7 +9,13 @@ const Match = ({ match, handleUpdate }) => {
     score1: null,
     score2: null,
   });
-  const [warning, setWarning] = useState(null);
+  const [alertMsg, setAlertMsg] = useState(null);
+
+  const clearAlert = () => {
+    setTimeout(function () {
+      setAlertMsg(null);
+    }, 3000);
+  };
 
   const inputChange = (key, e) => {
     if (e.target.value === "") {
@@ -19,9 +25,10 @@ const Match = ({ match, handleUpdate }) => {
       const copyState = { ...inputsValue };
       copyState[key] = +e.target.value;
       setIntputsValue(copyState);
-      setWarning(null);
+      setAlertMsg(null);
     } else {
-      setWarning("Invalid input. It has to be a positive integer. ");
+      setAlertMsg("Invalid input. It has to be a positive integer. " );
+      clearAlert()
     }
   };
 
@@ -42,7 +49,7 @@ const Match = ({ match, handleUpdate }) => {
 
   return (
     <>
-      {warning && <Warning errorMsg={warning} />}
+      {alertMsg && <Alert msg={alertMsg} className="alert--danger"/>}
       <div className="matches__row">
         <span className="team">{match.team1}</span>
         {match.score1 === null ? (

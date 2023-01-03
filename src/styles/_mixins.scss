@@ -1,0 +1,23 @@
+@mixin animation($duration, $name, $iteration) {
+  @keyframes hideAnimation {
+    0% {
+      visibility: hidden;
+      opacity: 0;
+      height: 0;
+    }
+    10% {
+      visibility: visible;
+      opacity: 1;
+      height: auto;
+    }
+    90% {
+      visibility: hidden;
+      opacity: 0;
+      height: 0;
+    }
+  }
+
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-iteration-count: $iteration;
+}
